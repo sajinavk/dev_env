@@ -10,16 +10,6 @@ sudo ./env_setup.sh
 
 ```
 
-
-
-         __                                     __   
-  ____  / /_     ____ ___  __  __   ____  _____/ /_  
- / __ \/ __ \   / __ `__ \/ / / /  /_  / / ___/ __ \ 
-/ /_/ / / / /  / / / / / / /_/ /    / /_(__  ) / / / 
-\____/_/ /_/  /_/ /_/ /_/\__, /    /___/____/_/ /_/  
-                        /____/                       ....is now installed!
-
-
 Before you scream Oh My Zsh! look over the `.zshrc` file to select plugins, themes, and options.
 
 • Follow us on X: https://x.com/ohmyzsh
