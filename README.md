@@ -1,11 +1,21 @@
-wget -qO- https://raw.githubusercontent.com/MichaelWoodc/dev_env/main/env_setup.sh | sudo bash
+## 🚀 Quick Install
 
+You can set up the environment with either method below:
 
+### Option 1: Download and run
+```bash
+wget https://raw.githubusercontent.com/MichaelWoodc/dev_env/main/env_setup.sh -O env_setup.sh
+chmod +x env_setup.sh
+sudo ./env_setup.sh
 
+```
 
+OR
 
-Looking for an existing zsh config...
-Using the Oh My Zsh template file and adding it to /home/mlw19mlw91/.zshrc.
+```bash
+get -qO- https://raw.githubusercontent.com/MichaelWoodc/dev_env/main/env_setup.sh | sudo bash
+```
+
 
          __                                     __   
   ____  / /_     ____ ___  __  __   ____  _____/ /_  
