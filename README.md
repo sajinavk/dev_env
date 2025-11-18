@@ -10,11 +10,6 @@ sudo ./env_setup.sh
 
 ```
 
-OR
-
-```bash
-get -qO- https://raw.githubusercontent.com/MichaelWoodc/dev_env/main/env_setup.sh | sudo bash
-```
 
 
          __                                     __   
