@@ -1,4 +1,4 @@
-## 🚀 Quick Install
+## Quick Install
 
 You can set up the environment with either method below:
 
