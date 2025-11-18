@@ -68,5 +68,5 @@ echo
 echo "-------------------------------------------------------"
 echo " Done! Logout/login or run:  zsh "
 echo "-------------------------------------------------------"
-exec zsh
-
+# Start zsh immediately for the invoking user
+sudo -u "$SUDO_USER" zsh
