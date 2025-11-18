@@ -10,18 +10,6 @@ if [ "$EUID" -ne 0 ]; then
 fi
 
 ### -----------------------------------------------------------
-###  USER DETECTION
-### -----------------------------------------------------------
-# Detect the non-root user running sudo
-if [ -z "$SUDO_USER" ]; then
-  echo "Could not detect non-root user. Exiting."
-  exit 1
-fi
-
-USER_NAME="$SUDO_USER"
-HOME_DIR=$(eval echo "~$USER_NAME")
-
-### -----------------------------------------------------------
 ###  INSTALL DEPENDENCIES
 ### -----------------------------------------------------------
 echo "Installing dependencies: zsh, curl, git ..."
@@ -31,13 +19,17 @@ apt install -y zsh curl git
 ### -----------------------------------------------------------
 ###  INSTALL OH-MY-ZSH SILENTLY
 ### -----------------------------------------------------------
-echo "Installing Oh My Zsh for $USER_NAME..."
-sudo -u "$USER_NAME" sh -c \
-  "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended
+echo "Installing Oh My Zsh..."
 
-# Make zsh the default shell
-chsh -s "$(which zsh)" "$USER_NAME"
-echo "Default shell set to zsh for $USER_NAME"
+# Install oh-my-zsh silently for the invoking user
+sudo -u "$SUDO_USER" sh -c \
+  'curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh | bash -s -- --unattended'
+
+### -----------------------------------------------------------
+###  SET DEFAULT SHELL TO ZSH
+### -----------------------------------------------------------
+echo "Setting zsh as default shell for $SUDO_USER ..."
+chsh -s "$(which zsh)" "$SUDO_USER"
 
 ### -----------------------------------------------------------
 ###  APPLY CUSTOM NANO SETTINGS
@@ -47,7 +39,8 @@ echo "Applying nano customizations to $NANORC ..."
 
 apply_setting() {
     local setting="$1"
-    local escaped=$(printf '%s\n' "$setting" | sed 's/[.[\*^$(){}?+|/]/\\&/g')
+    local escaped
+    escaped=$(printf '%s\n' "$setting" | sed 's/[.[\*^$(){}?+|/]/\\&/g')
 
     if grep -q "^# *$escaped" "$NANORC"; then
         sed -i "s/^# *$escaped/$setting/" "$NANORC"
@@ -69,18 +62,9 @@ apply_setting "set mouse"
 apply_setting "set positionlog"
 
 ### -----------------------------------------------------------
-###  FINISH
+###  DONE
 ### -----------------------------------------------------------
 echo
 echo "-------------------------------------------------------"
-echo " Setup complete!"
-echo " - Oh My Zsh installed for $USER_NAME"
-echo " - Default shell changed to zsh"
-echo " - Nano customized"
-echo "Please log out and back in, or open a new terminal to start using zsh."
+echo " Done! Logout/login or run:  zsh "
 echo "-------------------------------------------------------"
-
-# Optional: uncomment to automatically reboot
-# echo "Rebooting in 5 seconds..."
-# sleep 5
-# reboot
