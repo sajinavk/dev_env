@@ -1,6 +1,6 @@
 ## Quick Install
 
-You can set up the environment with either method below:
+You can set up the environment using the code below:
 
 ### Option 1: Download and run
 ```bash
@@ -11,9 +11,5 @@ sudo ./env_setup.sh
 ```
 
 Before you scream Oh My Zsh! look over the `.zshrc` file to select plugins, themes, and options.
-
-• Follow us on X: https://x.com/ohmyzsh
-• Join our Discord community: https://discord.gg/ohmyzsh
-• Get stickers, t-shirts, coffee mugs and more: https://openswag.shop/collections/oh-my-zsh
 
 Run zsh to try it out.
